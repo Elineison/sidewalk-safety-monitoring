@@ -1,37 +1,54 @@
-# Live Stream Gateway Demo
+# Sidewalk Safety Monitoring
 
-Public portfolio demo of a multi-vendor VMS live gateway.
+Public case study for camera-based sidewalk dwell-time monitoring.
 
-The project models how a frontend or business system can request a camera stream without needing to know the vendor-specific runtime details behind it. The gateway resolves the camera, finds its binding, selects the provider, and returns a normalized stream descriptor.
+This repository is a sanitized version of a sidewalk monitoring workflow: configured camera ROI, person tracks, dwell-time thresholds, cooldowns, runtime status, synthetic evidence, and operator events. It is designed for portfolio review without exposing any production camera, customer, or incident data.
+
+## Operational Problem
+
+Sidewalk monitoring is different from generic motion detection. The system needs to know whether a person remains in a relevant outdoor ROI for too long, whether the camera is still providing fresh frames, and whether alerts are being created with enough context for an operator to act.
 
 ## What This Demonstrates
 
-- API gateway design with FastAPI
-- provider abstraction for multiple camera/VMS vendors
-- catalog-based routing
-- health-first operational behavior
-- clean public demo without vendor SDKs or private endpoints
+- FastAPI module for sidewalk camera analytics.
+- ROI-based person-track runtime with elapsed time and confidence.
+- Dwell-time event creation with cooldown logic.
+- Camera health snapshot based on last frame age.
+- Synthetic SVG snapshot for README screenshots and demos.
+
+## Architecture
+
+```text
+camera frame -> person detection -> ROI track -> dwell-time rule -> operator event
+                              -> runtime snapshot -> health endpoint
+```
 
 ## Run Locally
 
 ```bash
-python -m venv .venv
-. .venv/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload --port 8013
 ```
 
 Open:
 
-- `http://127.0.0.1:8000/`
-- `http://127.0.0.1:8000/api/cameras`
-- `http://127.0.0.1:8000/api/cameras/cam-social-01/stream`
+- `http://127.0.0.1:8013/`
+- `http://127.0.0.1:8013/api/sidewalk/cameras`
+- `http://127.0.0.1:8013/api/demo/sidewalk-camera/snapshot.svg`
 
-## Design
+Create a synthetic event:
 
-Real production systems often need different stream paths for Hikvision, Intelbras, Dahua, RTSP bridges, MJPEG snapshots, and WebSocket viewers. This demo keeps the same architectural idea but replaces private vendor code with safe provider classes.
+```bash
+curl -X POST http://127.0.0.1:8013/api/demo/sidewalk-dwell
+curl http://127.0.0.1:8013/api/sidewalk/events
+```
 
-## Portfolio Note
+## Public-Safe Scope
 
-No proprietary SDK, private camera URL, credential, video frame, or customer network detail is included.
+All camera names, sites, detections, tracks, and events are synthetic. The repository does not include production recordings, private IPs, DVR credentials, customer identifiers, SDK files, or alert destinations.
 
+## Skills Represented
+
+Python, FastAPI, video analytics domain modeling, OpenCV/YOLO-oriented architecture, runtime health checks, operator event design, and security-operations thinking.

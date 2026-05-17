@@ -1,12 +1,5 @@
-# Ethics And Privacy
+# Ethics And Public Scope
 
-This demo keeps the architecture public and the operational details private:
+This repository uses synthetic sidewalk camera data and synthetic events only.
 
-- no vendor SDK binaries
-- no stream credentials
-- no private IP addresses
-- no production camera snapshots or recordings
-- no customer names or internal service URLs
-
-Provider classes return synthetic descriptors so recruiters can inspect the design safely.
-
+It does not contain customer names, private camera endpoints, recordings, images from monitored environments, credentials, SDK binaries, or production alert destinations. It demonstrates the public architecture boundary and keeps confidential operational data out of the portfolio.

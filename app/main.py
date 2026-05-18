@@ -31,6 +31,7 @@ def index() -> str:
       <p>
         Sanitized monitoring service for sidewalk cameras: ROI, person tracks,
         dwell-time threshold, camera runtime and operator events.
+        Dahua/Intelbras is represented as one operational platform family in this demo.
       </p>
       <ul>
         <li><a href="/api/sidewalk/cameras">Configured cameras</a></li>

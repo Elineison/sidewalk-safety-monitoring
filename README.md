@@ -2,7 +2,7 @@
 
 Public case study for camera-based sidewalk dwell-time monitoring.
 
-This repository is a sanitized version of a sidewalk monitoring workflow: configured camera ROI, person tracks, dwell-time thresholds, cooldowns, runtime status, synthetic evidence, and operator events. It is designed for portfolio review without exposing any production camera, customer, or incident data.
+This repository is a sanitized version of a sidewalk monitoring workflow: configured camera ROI in a Dahua/Intelbras platform-family context, person tracks, dwell-time thresholds, cooldowns, runtime status, synthetic evidence, and operator events. It is designed for portfolio review without exposing any production camera, customer, or incident data.
 
 ## Operational Problem
 
@@ -10,7 +10,7 @@ Sidewalk monitoring is different from generic motion detection. The system needs
 
 ## What This Demonstrates
 
-- FastAPI module for sidewalk camera analytics.
+- FastAPI module for sidewalk camera analytics using one Dahua/Intelbras operational platform family.
 - ROI-based person-track runtime with elapsed time and confidence.
 - Dwell-time event creation with cooldown logic.
 - Camera health snapshot based on last frame age.
@@ -47,7 +47,7 @@ curl http://127.0.0.1:8013/api/sidewalk/events
 
 ## Public-Safe Scope
 
-All camera names, sites, detections, tracks, and events are synthetic. The repository does not include production recordings, private IPs, DVR credentials, customer identifiers, SDK files, or alert destinations.
+All camera names, sites, detections, tracks, and events are synthetic. The repository does not include production recordings, private IPs, DVR credentials, customer identifiers, platform SDK files, or alert destinations.
 
 ## Skills Represented
 

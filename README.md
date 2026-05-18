@@ -16,7 +16,7 @@ VMS significa Sistema de Gerenciamento de Vídeo: a camada que centraliza câmer
 
 ## Contexto Representado
 
-- Câmeras em operação VMS com família Dahua/Intelbras.
+- Câmeras em operação VMS com Intelbras.
 - Worker de stream em tempo real alimentando o módulo de analytics.
 - Integração entre detecção, runtime, eventos e suporte operacional.
 

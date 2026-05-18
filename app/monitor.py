@@ -28,8 +28,8 @@ class SidewalkSafetyMonitor:
         self._cameras = [
             {
                 'id': 'sidewalk-front-a01',
-                'name': 'Front sidewalk camera',
-                'site': 'Residential perimeter A',
+                'name': 'Câmera da calçada frontal',
+                'site': 'Perímetro residencial A',
                 'platform_family': 'dahua-intelbras',
                 'threshold_s': 300.0,
                 'cooldown_s': 90.0,
@@ -43,8 +43,8 @@ class SidewalkSafetyMonitor:
             },
             {
                 'id': 'sidewalk-service-b02',
-                'name': 'Service-side sidewalk camera',
-                'site': 'Residential perimeter B',
+                'name': 'Câmera da calçada de serviço',
+                'site': 'Perímetro residencial B',
                 'platform_family': 'dahua-intelbras',
                 'threshold_s': 420.0,
                 'cooldown_s': 120.0,
@@ -134,7 +134,7 @@ class SidewalkSafetyMonitor:
             'track_id': track.track_id,
             'duration_s': round(track.elapsed_s, 1),
             'confidence': round(float(track.confidence), 3),
-            'operator_note': 'Person remained in sidewalk ROI beyond the configured threshold.',
+            'operator_note': 'Pessoa permaneceu na ROI da calçada acima do limite configurado.',
             'created_at': now,
             'status': 'open',
         }

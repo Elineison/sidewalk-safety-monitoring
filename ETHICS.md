@@ -1,5 +1,5 @@
-# Ethics And Public Scope
+# Ética e Escopo Público
 
-This repository uses synthetic sidewalk camera data and synthetic events only.
+Este repositório usa apenas dados e eventos sintéticos de câmeras de calçada.
 
-It does not contain customer names, private camera endpoints, recordings, images from monitored environments, credentials, SDK binaries, or production alert destinations. It demonstrates the public architecture boundary and keeps confidential operational data out of the portfolio.
+Ele não contém nomes de clientes, endpoints privados de câmeras, gravações, imagens de ambientes monitorados, credenciais, SDKs proprietários ou destinos reais de alerta. O projeto demonstra a fronteira arquitetural pública e mantém dados operacionais confidenciais fora do portfólio.

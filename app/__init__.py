@@ -1,1 +1,1 @@
-"""Public-safe sidewalk safety monitoring case study."""
+"""Estudo de caso público e sanitizado para monitoramento de calçadas."""

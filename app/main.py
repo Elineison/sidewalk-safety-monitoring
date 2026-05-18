@@ -8,9 +8,9 @@ from app.monitor import SidewalkSafetyMonitor
 
 
 app = FastAPI(
-    title='Sidewalk Safety Monitoring',
+    title='Monitoramento de Calçadas',
     version='2.0.0',
-    description='Public case study for sidewalk dwell-time monitoring and camera health operations.',
+    description='Estudo de caso público para monitoramento de permanência em calçadas e saúde de câmeras.',
 )
 monitor = SidewalkSafetyMonitor()
 
@@ -26,19 +26,19 @@ class PersonDetectionIn(BaseModel):
 def index() -> str:
     return '''
     <main style="font-family:system-ui;max-width:920px;margin:40px auto;line-height:1.5">
-      <p style="text-transform:uppercase;font-size:12px;letter-spacing:.08em;color:#476582">public case study</p>
-      <h1>Sidewalk Safety Monitoring</h1>
+      <p style="text-transform:uppercase;font-size:12px;letter-spacing:.08em;color:#476582">estudo de caso público</p>
+      <h1>Monitoramento de Calçadas</h1>
       <p>
-        Sanitized monitoring service for sidewalk cameras: ROI, person tracks,
-        dwell-time threshold, camera runtime and operator events.
-        Dahua/Intelbras is represented as one operational platform family in this demo.
+        Serviço sanitizado de monitoramento de calçadas: ROI, tracks de pessoas,
+        limite de permanência, runtime de câmera e eventos operacionais.
+        Dahua/Intelbras é representado como uma única família operacional nesta demo.
       </p>
       <ul>
-        <li><a href="/api/sidewalk/cameras">Configured cameras</a></li>
-        <li><a href="/api/sidewalk/events">Events</a></li>
-        <li><a href="/api/demo/sidewalk-camera/snapshot.svg">Synthetic snapshot</a></li>
+        <li><a href="/api/sidewalk/cameras">Câmeras configuradas</a></li>
+        <li><a href="/api/sidewalk/events">Eventos</a></li>
+        <li><a href="/api/demo/sidewalk-camera/snapshot.svg">Snapshot sintético</a></li>
       </ul>
-      <p>Use <code>POST /api/demo/sidewalk-dwell</code> to create a synthetic sidewalk dwell event.</p>
+      <p>Use <code>POST /api/demo/sidewalk-dwell</code> para criar um evento sintético de permanência em calçada.</p>
     </main>
     '''
 
@@ -99,8 +99,8 @@ def synthetic_snapshot() -> Response:
       <polygon points="230,140 720,130 800,420 170,420" fill="rgba(61,220,151,.18)" stroke="#3ddc97" stroke-width="4"/>
       <rect x="430" y="205" width="86" height="190" fill="rgba(74,168,255,.30)" stroke="#4aa8ff" stroke-width="4"/>
       <circle cx="472" cy="180" r="28" fill="rgba(74,168,255,.30)" stroke="#4aa8ff" stroke-width="4"/>
-      <text x="118" y="88" font-family="Arial" font-size="32" fill="#f9fafb">Synthetic sidewalk monitoring frame</text>
-      <text x="118" y="126" font-family="Arial" font-size="20" fill="#cbd5e1">ROI, person track and dwell-time event boundary</text>
+      <text x="118" y="88" font-family="Arial" font-size="32" fill="#f9fafb">Frame sintético de monitoramento de calçada</text>
+      <text x="118" y="126" font-family="Arial" font-size="20" fill="#cbd5e1">ROI, track de pessoa e limite de evento de permanência</text>
     </svg>
     '''
     return Response(svg.strip(), media_type='image/svg+xml')

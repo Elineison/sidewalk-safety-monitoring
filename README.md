@@ -1,10 +1,14 @@
 # Sidewalk Safety Monitoring
 
-Módulo FastAPI que representa monitoramento de permanência em calçadas usando câmeras, ROI e tracks de pessoas.
+Módulo FastAPI que representa monitoramento de permanência em calçadas usando câmeras, ROI e tracks de pessoas dentro de uma operação VMS.
+
+## O Que Significa VMS Aqui
+
+VMS significa Sistema de Gerenciamento de Vídeo: a camada que centraliza câmeras, DVRs/NVRs, streams ao vivo, gravações, eventos, alertas e integrações. Neste repositório, o VMS é a base operacional que fornece vídeo em tempo real e recebe eventos, runtime e health checks do módulo.
 
 ## O Que o Sistema Faz
 
-- Recebe detecções sintéticas vindas de um worker de vídeo em tempo real.
+- Recebe detecções sintéticas vindas de um worker de vídeo em tempo real conectado ao VMS.
 - Mantém runtime por câmera com último frame, tracks ativos, ROI e cooldown.
 - Gera evento quando uma pessoa permanece na ROI da calçada acima do limite configurado.
 - Expõe snapshot SVG sintético para demonstrar a ideia de ROI e track sem usar imagem real.

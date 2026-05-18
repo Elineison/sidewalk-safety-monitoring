@@ -10,7 +10,7 @@ from app.monitor import SidewalkSafetyMonitor
 app = FastAPI(
     title='Monitoramento de Calçadas',
     version='2.0.0',
-    description='Módulo público para monitoramento de calçadas, streaming VMS e saúde de câmeras.',
+    description='Módulo público para monitoramento de calçadas, VMS (Sistema de Gerenciamento de Vídeo), streaming e saúde de câmeras.',
 )
 monitor = SidewalkSafetyMonitor()
 
@@ -31,6 +31,7 @@ def index() -> str:
       <p>
         Módulo FastAPI para ROI de calçada, tracks de pessoas, limite de permanência,
         eventos operacionais e health check. Representa analytics conectado a stream VMS em tempo real.
+        VMS significa Sistema de Gerenciamento de Vídeo, a camada que centraliza câmeras, streams, eventos e alertas.
       </p>
       <ul>
         <li><a href="/api/sidewalk/cameras">Câmeras configuradas</a></li>

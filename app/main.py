@@ -10,7 +10,7 @@ from app.monitor import SidewalkSafetyMonitor
 app = FastAPI(
     title='Monitoramento de Calçadas',
     version='2.0.0',
-    description='Estudo de caso público para monitoramento de permanência em calçadas e saúde de câmeras.',
+    description='Módulo público para monitoramento de calçadas, streaming VMS e saúde de câmeras.',
 )
 monitor = SidewalkSafetyMonitor()
 
@@ -26,12 +26,11 @@ class PersonDetectionIn(BaseModel):
 def index() -> str:
     return '''
     <main style="font-family:system-ui;max-width:920px;margin:40px auto;line-height:1.5">
-      <p style="text-transform:uppercase;font-size:12px;letter-spacing:.08em;color:#476582">estudo de caso público</p>
+      <p style="text-transform:uppercase;font-size:12px;letter-spacing:.08em;color:#476582">módulo público</p>
       <h1>Monitoramento de Calçadas</h1>
       <p>
-        Serviço sanitizado de monitoramento de calçadas: ROI, tracks de pessoas,
-        limite de permanência, runtime de câmera e eventos operacionais.
-        Dahua/Intelbras é representado como uma única família operacional nesta demo.
+        Módulo FastAPI para ROI de calçada, tracks de pessoas, limite de permanência,
+        eventos operacionais e health check. Representa analytics conectado a stream VMS em tempo real.
       </p>
       <ul>
         <li><a href="/api/sidewalk/cameras">Câmeras configuradas</a></li>

@@ -1,27 +1,31 @@
 # Sidewalk Safety Monitoring
 
-Estudo de caso público para monitoramento de permanência em calçadas por câmeras.
+Módulo FastAPI que representa monitoramento de permanência em calçadas usando câmeras, ROI e tracks de pessoas.
 
-Este repositório é uma versão sanitizada de um fluxo de monitoramento de calçadas: ROI de câmera em contexto operacional Dahua/Intelbras, tracks de pessoas, limites de permanência, cooldowns, runtime, evidência sintética e eventos para operação. Ele foi feito para avaliação de portfólio sem expor câmeras, clientes ou incidentes reais.
+## O Que o Sistema Faz
 
-## Problema Operacional
+- Recebe detecções sintéticas vindas de um worker de vídeo em tempo real.
+- Mantém runtime por câmera com último frame, tracks ativos, ROI e cooldown.
+- Gera evento quando uma pessoa permanece na ROI da calçada acima do limite configurado.
+- Expõe snapshot SVG sintético para demonstrar a ideia de ROI e track sem usar imagem real.
+- Expõe health check para identificar câmera sem frames recentes.
 
-Monitoramento de calçadas é diferente de detecção genérica de movimento. O sistema precisa saber se uma pessoa permanece em uma ROI externa por tempo excessivo, se a câmera continua entregando frames recentes e se os alertas estão sendo criados com contexto suficiente para um operador agir.
+## Contexto Representado
 
-## O Que Este Projeto Demonstra
+- Câmeras em operação VMS com família Dahua/Intelbras.
+- Worker de stream em tempo real alimentando o módulo de analytics.
+- Integração entre detecção, runtime, eventos e suporte operacional.
 
-- Módulo FastAPI para analytics de câmeras de calçada usando uma família operacional Dahua/Intelbras.
-- Runtime de track de pessoa baseado em ROI, com tempo acumulado e confiança.
-- Criação de evento de permanência com lógica de cooldown.
-- Snapshot de saúde da câmera baseado na idade do último frame.
-- Snapshot SVG sintético para screenshots e demonstrações públicas.
+## Endpoints
 
-## Arquitetura
-
-```text
-frame da câmera -> detecção de pessoa -> track em ROI -> regra de permanência -> evento operacional
-                                      -> snapshot de runtime -> endpoint de saúde
-```
+- `GET /` - página simples com links do módulo.
+- `GET /api/sidewalk/cameras` - câmeras configuradas e runtime.
+- `GET /api/sidewalk/cameras/{camera_id}/runtime` - runtime de uma câmera.
+- `POST /api/sidewalk/cameras/{camera_id}/detections` - ingere uma detecção sintética.
+- `POST /api/demo/sidewalk-dwell` - cria evento sintético de permanência.
+- `GET /api/sidewalk/events` - lista eventos gerados.
+- `GET /api/system/health` - saúde do módulo.
+- `GET /api/demo/sidewalk-camera/snapshot.svg` - evidência visual sintética.
 
 ## Rodar Localmente
 
@@ -32,23 +36,21 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8013
 ```
 
-Abra:
-
-- `http://127.0.0.1:8013/`
-- `http://127.0.0.1:8013/api/sidewalk/cameras`
-- `http://127.0.0.1:8013/api/demo/sidewalk-camera/snapshot.svg`
-
-Crie um evento sintético:
+## Testar
 
 ```bash
+curl http://127.0.0.1:8013/api/sidewalk/cameras
 curl -X POST http://127.0.0.1:8013/api/demo/sidewalk-dwell
 curl http://127.0.0.1:8013/api/sidewalk/events
+curl http://127.0.0.1:8013/api/system/health
 ```
 
-## Escopo Público e Seguro
+Abra no navegador:
 
-Todos os nomes de câmeras, sites, detecções, tracks e eventos são sintéticos. O repositório não inclui gravações de produção, IPs privados, credenciais de DVR/NVR, identificadores de clientes, SDKs proprietários ou destinos de alerta.
+```text
+http://127.0.0.1:8013/api/demo/sidewalk-camera/snapshot.svg
+```
 
-## Competências Representadas
+## Escopo Público
 
-Python, FastAPI, modelagem de domínio de video analytics, arquitetura orientada a OpenCV/YOLO, health checks de runtime, desenho de eventos para operação e visão prática de segurança eletrônica.
+Todos os dados são sintéticos. Não há imagens reais, gravações, IPs privados, credenciais, SDKs proprietários, nomes de clientes ou endpoints reais de alerta.
